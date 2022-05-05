@@ -22,7 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // todo contact list application
 // todo faq
 // todo contact page
-// todo authentication
 // todo edit profile
 // todo calender, events
 // todo chat
@@ -41,6 +40,7 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
+    Route::post('profile', [AuthController::class, 'profile']);
 });
 
 Route::apiResource('todos', TodosController::class);
