@@ -22,7 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // todo contact list application
 // todo faq
 // todo contact page
-// todo edit profile
 // todo calender, events
 // todo chat
 // todo invoices

@@ -25,7 +25,7 @@ class TodosController extends Controller
      */
     public function index()
     {
-        return response()->json(Todo::latest()->get(), 200);
+        return response()->json(auth()->user()->todos()->latest()->get(), 200);
     }
 
     /**
@@ -39,7 +39,7 @@ class TodosController extends Controller
         $request->validate([
             'content' => 'required'
         ]);
-        $todo = Todo::create([
+        $todo = auth()->user()->todos()->create([
            'content' => $request->input('content'),
            'completed' => 0
         ]);
@@ -67,6 +67,9 @@ class TodosController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
+        if (!auth()->user()->todos->contains($todo->id)) {
+            abort(403);
+        }
         $request->validate([
             'completed' => 'required'
         ]);

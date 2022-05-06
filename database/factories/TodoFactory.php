@@ -14,8 +14,9 @@ class TodoFactory extends Factory
     public function definition()
     {
         return [
-            'content' => $this->faker->text,
-            'completed' => $this->faker->boolean
+            'content' => $this->faker->company,
+            'completed' => $this->faker->boolean,
+            'user_id'  => 1
         ];
     }
 }
