@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ContactsController;
 use App\Http\Controllers\Api\TodosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,15 @@ Route::group([
     Route::post('profile', [AuthController::class, 'profile']);
 });
 
-Route::apiResource('todos', TodosController::class);
+
+Route::group([
+    'middleware' => 'jwt'
+], function ($router) {
+
+    Route::apiResource('todos', TodosController::class);
+
+    Route::apiResource('contacts', ContactsController::class);
+
+});
 
 
