@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ContactsController;
 use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\TodosController;
+use App\Http\Controllers\Api\UserManagerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,12 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // todo faq
-// todo contact page
 // todo calender, events
+// todo gallery
 // todo chat
 // todo invoices
 // todo ecommerce
-// todo manager users
 // todo blog
 // todo charts
 // todo support
@@ -51,6 +51,8 @@ Route::group([
     Route::apiResource('todos', TodosController::class);
 
     Route::apiResource('contacts', ContactsController::class);
+
+    Route::apiResource('users', UserManagerController::class);
 
     Route::post('contact-us', ContactUsController::class);
 
