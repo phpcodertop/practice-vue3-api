@@ -14,6 +14,6 @@
  */
 function isUndefined($input)
 {
-    if ($input == 'undefined') return null;
+    if ($input == 'undefined' || empty($input)) return '';
     return $input;
 }

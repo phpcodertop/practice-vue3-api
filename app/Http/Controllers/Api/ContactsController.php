@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
 
 class ContactsController extends Controller
@@ -19,7 +18,7 @@ class ContactsController extends Controller
 
     public function show(Contact $contact)
     {
-
+        return response()->json($contact, 200);
     }
 
     public function store(Request $request)
@@ -32,7 +31,7 @@ class ContactsController extends Controller
 
        // upload the image
         $image = $request->file('image');
-        $fileName = '';
+        $fileName = null;
         if ($image) {
             $fileName = time().'.'. $image->extension();
             $image->move(public_path('uploads/contacts'), $fileName);
@@ -56,7 +55,7 @@ class ContactsController extends Controller
         ], 201);
     }
 
-    public function update(Request $request, Contact $contact)
+    public function update(Contact $contact, Request $request)
     {
         $request->validate([
             'first_name' => 'required',
@@ -68,11 +67,13 @@ class ContactsController extends Controller
         $image = $request->file('image');
         $fileName = '';
         $data = array();
-        if ($image) {
+        if ($image && $image != 'undefined') {
             $fileName = time().'.'. $image->extension();
             $image->move(public_path('uploads/contacts'), $fileName);
             $fileName = 'uploads/contacts/'.$fileName;
-            unlink("$contact->originalImage");
+            if (isset($contact->originalImage)) {
+                unlink("$contact->originalImage");
+            }
             $data['image'] = $fileName;
         }
 
@@ -94,7 +95,7 @@ class ContactsController extends Controller
 
     public function destroy(Contact $contact)
     {
-        if ($contact->image) {
+        if (isset($contact->originalImage)) {
             unlink("$contact->originalImage");
         }
         $contact->delete();
