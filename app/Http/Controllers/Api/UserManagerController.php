@@ -24,7 +24,7 @@ class UserManagerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required:unique:users',
+            'email' => 'required|unique:users',
             'password' => 'required|min:6'
         ]);
 
@@ -41,7 +41,7 @@ class UserManagerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required:unique:users',
+            'email' => 'required|unique:users,'.$user->id,
             'password' => 'sometimes|min:6'
         ]);
 
