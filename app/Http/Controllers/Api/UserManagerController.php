@@ -11,7 +11,7 @@ class UserManagerController extends Controller
 
     public function index()
     {
-        $users = User::paginate(request()->all());
+        $users = User::latest()->paginate(10)->onEachSide(1);
         return response()->json($users, 200);
     }
 

@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // todo blog
 // todo charts
 // todo support
+// todo prayer times
 
 Route::group([
     'prefix' => 'auth'
