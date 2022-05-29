@@ -59,10 +59,10 @@ class UserManagerController extends Controller
     public function destroy(User $user)
     {
         if (auth()->id() == $user->id) {
-            return response()->json("You can't delete your self.", 401);
+            return response()->json("You can't delete your self.", 404);
         }
 
-        $user->destroy();
+        $user->delete();
         return response()->json("User deleted successfully", 200);
     }
 }
