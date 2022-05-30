@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BlogPostsController;
 use App\Http\Controllers\Api\ContactsController;
 use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\TodosController;
@@ -54,6 +55,8 @@ Route::group([
     Route::apiResource('contacts', ContactsController::class);
 
     Route::apiResource('users', UserManagerController::class);
+
+    Route::apiResource('blog', BlogPostsController::class);
 
     Route::post('contact-us', ContactUsController::class);
 
