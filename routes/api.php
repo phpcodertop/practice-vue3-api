@@ -45,6 +45,9 @@ Route::group([
     Route::post('profile', [AuthController::class, 'profile']);
 });
 
+Route::apiResource('blog', BlogPostsController::class);
+
+Route::post('contact-us', ContactUsController::class);
 
 Route::group([
     'middleware' => 'jwt'
@@ -56,9 +59,6 @@ Route::group([
 
     Route::apiResource('users', UserManagerController::class);
 
-    Route::apiResource('blog', BlogPostsController::class);
-
-    Route::post('contact-us', ContactUsController::class);
 
 });
 

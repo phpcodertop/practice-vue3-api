@@ -11,13 +11,18 @@ class BlogPost extends Model
     protected $guarded = [];
     protected $appends = array('postImage');
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
 
     public function author()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function getPostImageAttribute()
+    public function getPostImageAttribute(): string
     {
         if (isset($this->attributes['image'])) {
             return asset($this->attributes['image']);

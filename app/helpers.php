@@ -14,6 +14,18 @@
  */
 function isUndefined($input)
 {
-    if ($input == 'undefined' || empty($input)) return '';
+    if ($input === 'undefined' || empty($input))
+    {
+        return '';
+    }
     return $input;
+}
+
+function checkboxValue($input): int
+{
+    if ($input === 'undefined')
+    {
+        return 0;
+    }
+    return 1;
 }

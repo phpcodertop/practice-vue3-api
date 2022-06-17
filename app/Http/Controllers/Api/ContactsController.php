@@ -65,9 +65,8 @@ class ContactsController extends Controller
 
         // upload the image
         $image = $request->file('image');
-        $fileName = '';
         $data = array();
-        if ($image && $image != 'undefined') {
+        if ($image && $image !== 'undefined') {
             $fileName = time().'.'. $image->extension();
             $image->move(public_path('uploads/contacts'), $fileName);
             $fileName = 'uploads/contacts/'.$fileName;

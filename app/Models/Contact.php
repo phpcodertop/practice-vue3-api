@@ -14,21 +14,23 @@ class Contact extends Model
     /**
      * @return BelongsTo
      */
-    public function owner()
+    public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id', 'users');
     }
 
-    public function getImageAttribute()
+    public function getImageAttribute(): ?string
     {
-        if (isset($this->attributes['image'])) return asset($this->attributes['image']);
+        if (isset($this->attributes['image']))
+        {
+            return asset($this->attributes['image']);
+        }
         return null;
     }
 
     public function getOriginalImageAttribute()
     {
-        if (isset($this->attributes['image'])) return $this->attributes['image'];
-        return null;
+        return $this->attributes['image'] ?? null;
     }
 
 }
