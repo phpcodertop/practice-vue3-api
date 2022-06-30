@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BlogPostsController;
 use App\Http\Controllers\Api\ContactsController;
 use App\Http\Controllers\Api\ContactUsController;
+use App\Http\Controllers\Api\GalleryController;
 use App\Http\Controllers\Api\TodosController;
 use App\Http\Controllers\Api\UserManagerController;
 use Illuminate\Http\Request;
@@ -25,11 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // todo faq
 // todo calender, events
-// todo gallery
 // todo chat
 // todo invoices
 // todo ecommerce
-// todo blog
 // todo charts
 // todo support
 // todo prayer times
@@ -49,6 +48,8 @@ Route::apiResource('blog', BlogPostsController::class);
 
 Route::post('contact-us', ContactUsController::class);
 
+Route::apiResource('gallery', GalleryController::class);
+
 Route::group([
     'middleware' => 'jwt'
 ], function ($router) {
@@ -58,7 +59,6 @@ Route::group([
     Route::apiResource('contacts', ContactsController::class);
 
     Route::apiResource('users', UserManagerController::class);
-
 
 });
 
